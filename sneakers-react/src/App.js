@@ -1,4 +1,5 @@
-import Card from './components/Card';
+import React, { useState } from 'react';
+import Card from './components/Card/Card';
 import Drawer from './components/Drawer';
 import Header from './components/Header';
 
@@ -15,7 +16,7 @@ const shoes = [
   },
   {
     title: 'Мужские Кроссовки Nike Air Max 270',
-    price: '8 4999',
+    price: '8 499',
     imageUrl: './img/sneakers/3.jpg',
   },
   {
@@ -26,6 +27,9 @@ const shoes = [
 ];
 
 function App() {
+
+  const [] = useState();
+  
   return (
     <div className="wrapper clear">
       <Drawer />
@@ -40,7 +44,15 @@ function App() {
         </div>
 
         <div className="d-flex content__items">
-          {shoes.map((el) => <Card title={el.title} price={el.price} imageUrl={el.imageUrl} /> )}
+          {shoes.map(el => (
+            <Card
+              title={el.title}
+              price={el.price}
+              imageUrl={el.imageUrl}
+              onClickFavorite={() => console.log('zakladka')}
+              onClickPlus={() => console.log(el.title)}
+            />
+          ))}
         </div>
       </div>
     </div>

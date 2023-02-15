@@ -1,7 +1,9 @@
-export default function Card({title, price, imageUrl}) {
+import './Card.scss';
+
+export default function Card({title, price, imageUrl, onClickPlus, onClickFavorite}) {
   return (
     <div className="content__card">
-      <div className="favorite">
+      <div className="favorite" onClick={onClickFavorite}>
         <img src="./img/card-heart-no.svg" alt="notliked" />
       </div>
       <img width={133} height={112} src={imageUrl} alt="Sneakers" />
@@ -11,7 +13,7 @@ export default function Card({title, price, imageUrl}) {
           <span>Цена:</span>
           <b>{price} руб.</b>
         </div>
-        <button>
+        <button onClick={onClickPlus}>
           <img width={11} height={11} src="./img/button.svg" alt="button" />
         </button>
       </div>
