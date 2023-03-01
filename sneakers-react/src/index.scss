@@ -36,6 +36,8 @@ header {
 
   &__items {
     flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
   }
 
   &__search {
@@ -53,12 +55,22 @@ header {
 
   button {
     box-sizing: border-box;
-    border: 1px solid lightgray;
+    border: 0.5px solid lightgray;
     border-radius: 8px;
     background: #ffffff;
     width: 32px;
     height: 32px;
     cursor: pointer;
+    transition: 0.1s ease-in-out;
+    padding: 0;
+
+    img {
+      background-size: cover;
+    }
+
+    &:hover {
+      border: 1px solid #bfddf0;
+    }
   }
 }
 

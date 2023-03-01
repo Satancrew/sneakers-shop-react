@@ -1,9 +1,20 @@
+import { React, useEffect, useState } from 'react';
 import './Card.scss';
 
-export default function Card({title, price, imageUrl, onClickPlus, onClickFavorite}) {
+export default function Card({title, price, imageUrl }) {
+
+  const [isAdded, setIsAdded] = useState(false);
+
+  const onClickAdded = () => {
+    setIsAdded(!isAdded);
+  }
+
+  useEffect(() => {
+  }, [isAdded]);
+
   return (
     <div className="content__card">
-      <div className="favorite" onClick={onClickFavorite}>
+      <div className="favorite">
         <img src="./img/card-heart-no.svg" alt="notliked" />
       </div>
       <img width={133} height={112} src={imageUrl} alt="Sneakers" />
@@ -13,8 +24,8 @@ export default function Card({title, price, imageUrl, onClickPlus, onClickFavori
           <span>Цена:</span>
           <b>{price} руб.</b>
         </div>
-        <button onClick={onClickPlus}>
-          <img width={11} height={11} src="./img/button.svg" alt="button" />
+        <button className="content__btn" onClick={onClickAdded}>
+          <img src={isAdded ? "./img/btn-checked.svg" : "./img/button.svg"}  alt="button" />
         </button>
       </div>
     </div>

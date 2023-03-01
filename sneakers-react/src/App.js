@@ -1,39 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './components/Card/Card';
 import Drawer from './components/Drawer';
 import Header from './components/Header';
 
-const shoes = [
-  {
-    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price: '12 999',
-    imageUrl: './img/sneakers/1.jpg',
-  },
-  {
-    title: 'Мужские Кроссовки Nike Air Max 270',
-    price: '15 699',
-    imageUrl: './img/sneakers/2.jpg',
-  },
-  {
-    title: 'Мужские Кроссовки Nike Air Max 270',
-    price: '8 499',
-    imageUrl: './img/sneakers/3.jpg',
-  },
-  {
-    title: 'Кроссовки Puma X Aka Boku Future Rider',
-    price: '8 999',
-    imageUrl: './img/sneakers/4.jpg',
-  },
-];
-
 function App() {
+  const [shoes, setShoes] = useState([]);
+  const [cartOpened, setCartOpened] = useState(false);
 
-  const [] = useState();
-  
+  useEffect(() => {
+    fetch('https://63ff2ca1571200b7b7d76d05.mockapi.io/items')
+      .then(res => {
+        return res.json();
+      })
+      .then(json => {
+        setShoes(json);
+      });
+  }, []);
+
   return (
     <div className="wrapper clear">
-      <Drawer />
-      <Header />
+      {cartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : null}
+      <Header onClickCart={() => setCartOpened(true)} />
       <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
           <h1>Все кроссовки</h1>
@@ -49,8 +36,6 @@ function App() {
               title={el.title}
               price={el.price}
               imageUrl={el.imageUrl}
-              onClickFavorite={() => console.log('zakladka')}
-              onClickPlus={() => console.log(el.title)}
             />
           ))}
         </div>
