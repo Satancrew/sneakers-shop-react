@@ -37,7 +37,7 @@ header {
   &__items {
     flex-wrap: wrap;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   &__search {

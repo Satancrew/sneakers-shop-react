@@ -1,4 +1,5 @@
-export default function Drawer({ onClose }) {
+export default function Drawer({ onClose, onRemove, shoes = [] }) {
+  console.log(shoes);
   return (
     <div className="overlay">
       <div className="drawer">
@@ -12,34 +13,23 @@ export default function Drawer({ onClose }) {
           />
         </h2>
         <div className="drawer__items">
-          <div className="drawer__cart-item d-flex align-center mb-20">
-            <div
-              style={{ backgroundImage: 'url(./img/sneakers/1.jpg' }}
-              className="drawer__cart-item-img"></div>
-            <div className="mr-20 flex cu-p">
-              <p className="mb-5">Мужские кроссовки Nike Air Max 270</p>
-              <b>12 999 руб.</b>
+          {shoes.map((el, index) => (
+            <div key={index} className="drawer__cart-item d-flex align-center mb-20">
+              <div
+                style={{ backgroundImage: `url(${el.imageUrl})` }}
+                className="drawer__cart-item-img"></div>
+              <div className="mr-20 flex cu-p">
+                <p className="mb-5">{el.title}</p>
+                <b>{el.price} руб.</b>
+              </div>
+              <img
+                onClick={() => onRemove(el.id)}
+                className="drawer__remove-btn"
+                src="./img/btn-remove.svg"
+                alt="Remove"
+              />
             </div>
-            <img
-              className="drawer__remove-btn"
-              src="./img/btn-remove.svg"
-              alt="Remove"
-            />
-          </div>
-          <div className="drawer__cart-item d-flex align-center mb-20">
-            <div
-              style={{ backgroundImage: 'url(./img/sneakers/2.jpg' }}
-              className="drawer__cart-item-img"></div>
-            <div className="mr-20 flex">
-              <p className="mb-5">Мужские кроссовки Nike Air Max 270</p>
-              <b>12 999 руб.</b>
-            </div>
-            <img
-              className="drawer__remove-btn"
-              src="./img/btn-remove.svg"
-              alt="Remove"
-            />
-          </div>
+          ))}
         </div>
         <div className="drawer__cart-total">
           <ul>
